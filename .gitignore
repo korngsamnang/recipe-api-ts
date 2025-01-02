@@ -1,0 +1,39 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build directories
+build/
+dist/
+coverage/
+
+# Dependency directories for client (React)
+client/node_modules/
+
+# Production bundle
+client/build/
+
+# Cache files
+.cache/
+.client-cache/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+
+# Local .gitignore overrides
+!.gitignore
