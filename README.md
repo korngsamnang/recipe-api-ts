@@ -85,7 +85,7 @@ In your `package.json`, modify the scripts section to include the following comm
 }
 ```
 
-### Folder Structure
+### 8. Folder Structure
 
 Your project directory structure should now look like this:
 
