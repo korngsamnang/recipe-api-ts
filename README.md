@@ -99,3 +99,63 @@ server/
 ├── tsconfig.json   # TypeScript configuration
 └── package-lock.json # Lockfile for dependencies
 ```
+
+### 9. Create the src/index.ts File
+
+Create the src/index.ts file to set up a basic Express server:
+
+```bash
+import express from "express";
+import dotenv from "dotenv";
+import bodyParser from "body-parser";
+import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
+
+// CONFIGURATION
+dotenv.config();
+const app = express();
+app.use(express.json());
+app.use(cors());
+app.use(helmet());
+app.use(
+    helmet.crossOriginResourcePolicy({
+        policy: "cross-origin",
+    })
+);
+app.use(morgan("common"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// ROUTES
+app.get("/", (req, res) => {
+    res.send("Hello World!!!!");
+});
+
+// SERVER
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
+```
+
+### 10. Running the Application
+
+_Development Mode_
+To run the server in development mode (with live reloading):
+
+```bash
+npm run dev
+```
+
+_Production Mode_
+To build and run the server in production mode:
+
+```bash
+npm run build
+npm start
+```
+
+Your Express server is now set up with TypeScript! You can now expand on this setup by adding routes, middleware, and other features as needed for your application.
