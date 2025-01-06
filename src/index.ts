@@ -5,6 +5,10 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 
+import userRouter from "./routes/user-route";
+import AppError from "../utils/app-error";
+import { globalErrorHandler } from "./controllers/error-controller";
+
 // CONFIGURATION
 dotenv.config();
 const app = express();
@@ -21,13 +25,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // ROUTES
-app.get("/", (req, res) => {
-    res.send("Hello World!!!!");
+app.use("/api/v1/users", userRouter);
+app.all("*", (req, res, next) => {
+    next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
-// SERVER
-const port = process.env.PORT || 3000;
+app.use(globalErrorHandler);
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+export default app;
